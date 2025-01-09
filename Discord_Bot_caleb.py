@@ -42,7 +42,8 @@ async def main_en(ctx):
     await ctx.send('Main News EN:')
     titles,links = Caller.call('main')
     # Combine items and prices into a formatted string
-    lines = [f'Title: {translator.translate(title,src="ja", dest="en").text} Link: {link}' for title, link in zip(titles, links)]
+    lines = [f'Title: {jp_en_translate(title)}\nLink: {link}' for title, link in
+             zip(titles, links)]
     message = "\n\n".join(lines)
     await command_send_message(ctx,message)
 
@@ -60,7 +61,7 @@ async def featured_en(ctx):
     await ctx.send('Featured News EN:')
     titles,links = Caller.call('featured')
     # Combine items and prices into a formatted string
-    lines = [f'Title: {await jp_en_translate(title)}\nLink: {link}' for title, link in
+    lines = [f'Title: {jp_en_translate(title)}\nLink: {link}' for title, link in
              zip(titles, links)]
     message = '\n\n'.join(lines)
     print(f'Message:{message}')
@@ -80,7 +81,7 @@ async def society_en(ctx):
     await ctx.send('Society News EN:')
     titles,links = Caller.call('society')
     # Combine items and prices into a formatted string
-    lines = [f'Title: {translator.translate(title, src="ja", dest="en").text} Link: {link}' for title, link in
+    lines = [f'Title: {jp_en_translate(title)}\nLink: {link}' for title, link in
              zip(titles, links)]
     message = "\n\n".join(lines)
     await command_send_message(ctx,message)
@@ -100,7 +101,7 @@ async def disaster_en(ctx):
     await ctx.send('Disaster News EN:')
     titles,links = Caller.call('disaster')
     # Combine items and prices into a formatted string
-    lines = [f'Title: {translator.translate(title, src="ja", dest="en").text} Link: {link}' for title, link in
+    lines = [f'Title: {jp_en_translate(title)}\nLink: {link}' for title, link in
              zip(titles, links)]
     message = "\n\n".join(lines)
     await command_send_message(ctx,message)
@@ -119,7 +120,7 @@ async def politics_en(ctx):
     await ctx.send('Politics News EN:')
     titles,links = Caller.call('politics')
     # Combine items and prices into a formatted string
-    lines = [f'Title: {translator.translate(title, src="ja", dest="en").text} Link: {link}' for title, link in
+    lines = [f'Title: {jp_en_translate(title)}\nLink: {link}' for title, link in
              zip(titles, links)]
     message = "\n\n".join(lines)
     await command_send_message(ctx,message)
@@ -138,7 +139,7 @@ async def business_en(ctx):
     await ctx.send('Business News EN:')
     titles,links = Caller.call('business')
     # Combine items and prices into a formatted string
-    lines = [f'Title: {translator.translate(title, src="ja", dest="en").text} Link: {link}' for title, link in
+    lines = [f'Title: {jp_en_translate(title)}\nLink: {link}' for title, link in
              zip(titles, links)]
     message = "\n\n".join(lines)
     await command_send_message(ctx,message)
@@ -157,7 +158,7 @@ async def international_en(ctx):
     await ctx.send('International News EN:')
     titles,links = Caller.call('international')
     # Combine items and prices into a formatted string
-    lines = [f'Title: {translator.translate(title, src="ja", dest="en").text} Link: {link}' for title, link in
+    lines = [f'Title: {jp_en_translate(title)}\nLink: {link}' for title, link in
              zip(titles, links)]
     message = "\n\n".join(lines)
     await command_send_message(ctx,message)
@@ -176,7 +177,7 @@ async def science_en(ctx):
     await ctx.send('Science and Culture News EN:')
     titles,links = Caller.call('science')
     # Combine items and prices into a formatted string
-    lines = [f'Title: {translator.translate(title, src="ja", dest="en").text} Link: {link}' for title, link in
+    lines = [f'Title: {jp_en_translate(title)}\nLink: {link}' for title, link in
              zip(titles, links)]
     message = "\n\n\n".join(lines)
     await command_send_message(ctx,message)
@@ -195,7 +196,7 @@ async def sports_en(ctx):
     await ctx.send('Sports News EN:')
     titles,links = Caller.call('sports')
     # Combine items and prices into a formatted string
-    lines = [f'Title: {translator.translate(title, src="ja", dest="en").text} Link: {link}' for title, link in
+    lines = [f'Title: {jp_en_translate(title)}\nLink: {link}' for title, link in
              zip(titles, links)]
     message = "\n\n".join(lines)
     await command_send_message(ctx,message)
@@ -214,7 +215,7 @@ async def life_en(ctx):
     await ctx.send('Medic and Life News EN:')
     titles,links = Caller.call('life')
     # Combine items and prices into a formatted string
-    lines = [f'Title: {translator.translate(title, src="ja", dest="en").text} Link: {link}' for title, link in
+    lines = [f'Title: {jp_en_translate(title)}\nLink: {link}' for title, link in
              zip(titles, links)]
     message = "\n\n".join(lines)
     await command_send_message(ctx,message)
@@ -268,7 +269,7 @@ async def command_send_message(ctx,message):
             await ctx.send(chunk)
 
 async def jp_en_translate(text):
-    return translator.translate(text,src="ja", dest="en").text
-
+    translated = await translator.translate(text,src="ja", dest="en")
+    return translated.text
 # Run the bot
 bot.run(token)
